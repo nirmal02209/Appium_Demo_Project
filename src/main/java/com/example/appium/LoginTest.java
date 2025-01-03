@@ -13,6 +13,10 @@ public class LoginTest {
 
         System.out.println("USERNAME: " + username);
         System.out.println("PASSWORD: " + password);
+
+        System.out.println("USERNAME from System Property: " + System.getProperty("username"));
+        System.out.println("PASSWORD from System Property: " + System.getProperty("password"));
+
     }
 
     }

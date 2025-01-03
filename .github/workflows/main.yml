@@ -9,22 +9,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
+      # Step 1: Checkout the repository code
       - uses: actions/checkout@v3
 
-      # Step 2: Set up JDK 11 (or the version your project requires)
-      - name: Set up JDK 11
+      # Step 2: Set up JDK 11 (or any version you require)
+      - name: Set up JDK 23
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '23'
           distribution: "temurin"
           cache: maven
 
-      # Step 3: Debug secrets (optional, remove later)
+      # Step 3: Debug Secrets - Check if secrets are being passed correctly
       - name: Debug Secrets
         run: |
-          echo "USERNAME is set: ${{ secrets.USERNAME != '' }}"
-          echo "PASSWORD is set: ${{ secrets.PASSWORD != '' }}"
+          echo "USERNAME: ${{ secrets.USERNAME }}"
+          echo "PASSWORD: ${{ secrets.PASSWORD }}"
 
       # Step 4: Run Appium Tests with Maven, passing secrets as Maven properties
       - name: Run Appium Tests
