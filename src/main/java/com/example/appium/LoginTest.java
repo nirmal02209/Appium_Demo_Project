@@ -8,8 +8,8 @@ public class LoginTest {
     @Test
     public void printSecrets() {
         // Retrieve credentials from environment variables
-        String username = System.getenv("APP_USERNAME");
-        String password = System.getenv("APP_PASSWORD");
+        String username = System.getenv("USERNAME");
+        String password = System.getenv("PASSWORD");
 
         // Set properties
 
