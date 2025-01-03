@@ -1,38 +1,17 @@
-name: Print Secrets
-
-on: [push]
-
 jobs:
-  debug-secrets:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: windows-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Check if USERNAME secret exists
-        run: |
-          if [[ -z "${{ secrets.USERNAME }}" ]]; then
-            echo "USERNAME secret does not exist"
-          else
-            echo "USERNAME secret exists"
-          fi
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '23'
 
-      - name: Check if PASSWORD secret exists
+      - name: Run tests
         run: |
-          if [[ -z "${{ secrets.PASSWORD }}" ]]; then
-            echo "PASSWORD secret does not exist"
-          else
-            echo "PASSWORD secret exists"
-          fi
-
-      - name: Print USERNAME and PASSWORD (for debugging)
-        run: |
-          echo "USERNAME: ${{ secrets.USERNAME }}"
-          echo "PASSWORD: ${{ secrets.PASSWORD }}"
-
-      - name: Debugging Secret Values (for testing purposes only)
-        run: |
-          # WARNING: This will expose your secret in logs. Use with caution.
-          echo "${{ secrets.USERNAME }}" | sed 's/./& /g'
-          echo "${{ secrets.PASSWORD }}" | sed 's/./& /g'
+          set USERNAME=${{ secrets.USERNAME }}
+          set PASSWORD=${{ secrets.PASSWORD }}
+          ./gradlew test
