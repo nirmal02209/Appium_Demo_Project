@@ -1,28 +1,26 @@
-name: Java CI
+name: Android Automation Test
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
-    runs-on: windows-latest
-
+  test:
+    runs-on: ubuntu-latest
     steps:
-      # Step to check out the repository code
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      # Step to set up Java environment
-        uses: actions/setup-java@v2
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
-          java-version: '23'
+          distribution: 'temurin'
+          java-version: '17'
 
-      # Step to set environment variables
-      - name: Set up environment variables
+      - name: Run Appium Test
+        env:
+          APP_USERNAME: ${{ secrets.APP_USERNAME }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
         run: |
-          echo "Setting up environment variables..."
-          echo "USERNAME=${{ secrets.USERNAME }}" >> $GITHUB_ENV
-          echo "PASSWORD=${{ secrets.PASSWORD }}" >> $GITHUB_ENV
-
-      # Step to run tests
-      - name: Run tests
-        run: ./gradlew test
+          ./gradlew test
