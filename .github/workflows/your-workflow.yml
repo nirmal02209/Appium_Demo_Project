@@ -1,0 +1,28 @@
+name: Java CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      # Step to check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step to set up Java environment
+        uses: actions/setup-java@v2
+        with:
+          java-version: '23'
+
+      # Step to set environment variables
+      - name: Set up environment variables
+        run: |
+          echo "Setting up environment variables..."
+          echo "USERNAME=${{ secrets.USERNAME }}" >> $GITHUB_ENV
+          echo "PASSWORD=${{ secrets.PASSWORD }}" >> $GITHUB_ENV
+
+      # Step to run tests
+      - name: Run tests
+        run: ./gradlew test
