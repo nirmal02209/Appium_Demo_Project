@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Basic project information -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>appium3</groupId>
+    <artifactId>appium33</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <!-- Define repositories for dependencies -->
+    <repositories>
+        <repository>
+            <id>appium-repository</id>
+            <url>https://maven.appium.io/</url>
+        </repository>
+    </repositories>
+
+    <!-- Dependencies Section -->
+    <dependencies>
+        <!-- Appium Java Client -->
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>8.2.1</version> <!-- Use the latest version of Appium Java Client -->
+        </dependency>
+
+        <!-- Selenium Java (needed for Appium to function properly) -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.8.0</version> <!-- Make sure the version is compatible with Appium -->
+        </dependency>
+
+        <!-- TestNG for writing tests (optional) -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.7.0</version> <!-- Optional: only if you want to use TestNG -->
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Apache Commons for utility functions (optional, might be useful for debugging/logging) -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Build Section (Optional) -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Compiler Plugin to ensure correct Java version -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
