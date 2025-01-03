@@ -19,6 +19,10 @@ public class LoginTest {
         String username = System.getenv("USERNAME");
         String password = System.getenv("PASSWORD");
 
+        // Print the values to verify
+        System.out.println("USERNAME: " + username);
+        System.out.println("PASSWORD: " + password);
+
         // Print placeholders to confirm secrets are set
         if (username != null && !username.isEmpty()) {
             System.out.println("USERNAME is retrieved successfully.");
