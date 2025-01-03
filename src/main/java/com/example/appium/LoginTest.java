@@ -8,8 +8,8 @@ public class LoginTest {
     @Test
     public void printSecrets() {
 
-        String username = System.getProperty("username");
-        String password = System.getProperty("password");
+        String username = System.getProperty("USERNAME");
+        String password = System.getProperty("PASSWORD");
 
         System.out.println("USERNAME: " + username);
         System.out.println("PASSWORD: " + password);
