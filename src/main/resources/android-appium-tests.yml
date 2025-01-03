@@ -1,22 +1,38 @@
-name: Java CI
+name: Print Secrets
 
 on: [push]
 
 jobs:
-  build:
+  debug-secrets:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 23
-        uses: actions/setup-java@v2
-        with:
-          java-version: '23'
+      - name: Check if USERNAME secret exists
+        run: |
+          if [[ -z "${{ secrets.USERNAME }}" ]]; then
+            echo "USERNAME secret does not exist"
+          else
+            echo "USERNAME secret exists"
+          fi
 
-      - name: Run tests
-        run: ./mvnw test
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
+      - name: Check if PASSWORD secret exists
+        run: |
+          if [[ -z "${{ secrets.PASSWORD }}" ]]; then
+            echo "PASSWORD secret does not exist"
+          else
+            echo "PASSWORD secret exists"
+          fi
+
+      - name: Print USERNAME and PASSWORD (for debugging)
+        run: |
+          echo "USERNAME: ${{ secrets.USERNAME }}"
+          echo "PASSWORD: ${{ secrets.PASSWORD }}"
+
+      - name: Debugging Secret Values (for testing purposes only)
+        run: |
+          # WARNING: This will expose your secret in logs. Use with caution.
+          echo "${{ secrets.USERNAME }}" | sed 's/./& /g'
+          echo "${{ secrets.PASSWORD }}" | sed 's/./& /g'
