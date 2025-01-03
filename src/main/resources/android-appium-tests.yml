@@ -1,27 +1,22 @@
-name: Test Appium Secrets
+name: Java CI
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  test:
-    runs-on: windows-latest
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 11
+      - name: Set up JDK 23
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
+          java-version: '23'
 
-      - name: Run Java Test
+      - name: Run tests
+        run: ./mvnw test
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: |
-          echo Running Java Test
-          java -cp . SecretsTest
